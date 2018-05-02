@@ -3,6 +3,7 @@
 ## Project Overview
 
 **Arturo Ortega**
+
 *Junior Full-Stack Developer*
 
 ### Name of the App
