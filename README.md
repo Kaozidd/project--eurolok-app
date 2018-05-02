@@ -1,32 +1,32 @@
-#EuroLook App
+# EuroLook App
 
-##Project Overview
+## Project Overview
 
 **Arturo Ortega**
 *Junior Full-Stack Developer*
 
-###Name of the App
+### Name of the App
 EuroLook App
 
-###Type of App
+### Type of App
 Web
 
-###Description
+### Description
 
 This is a web application that allows EuroLook customers to manage and make their hair salon appointments, help the hairdressers to manage their clients properly and have a record of their services, and allow an admin user to manage the hairdressing shop and the app itself.
 
-###Technologies
+### Technologies
 
 * HTML
 * CSS/SCSS
-..* Bootstrap
+  * Bootstrap
 * JavaScript
-..* React
-..* Express
-..* Node
-..* Knex
+  * React
+  * Express
+  * Node
+  * Knex
 
-###Features (MVP)
+### Features (MVP)
 
 1. Welcome view with login and login buttons, navbar to products/services listings, team members page and appointments section.
 2. Products/services listing view with the option to click on items to describe them and purchase them.
