@@ -15,6 +15,7 @@
     "npm-run-all": "4.1.2"
   },
   "devDependencies": {
+    "express": "^4.16.3",
     "nodemon": "1.12.1"
   }
 }
