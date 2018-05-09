@@ -14,7 +14,8 @@ class SignIn extends Component {
   	  name: e.target.signInName.value,
   	  email: e.target.signInEmail.value,
   	  password: e.target.signInPass.value,
-  	  phone: e.target.signInPhone.value
+  	  phone: e.target.signInPhone.value,
+  	  roleId: 0
   	}
   	request
   	  .post(`${API_URL}/auth/register`)
@@ -24,6 +25,7 @@ class SignIn extends Component {
   	  })
   	  .catch(function(e) {
   	  	console.log(e)
+  	  	alert('That user already exists.\nLog In or try different e-mail')
   	  })
   }
   render() {
@@ -31,39 +33,34 @@ class SignIn extends Component {
   	  <div className='grid'>
         <Paper className='login-material-ui-paper' zDepth={5} >
           <div className='login-form-container'>
-            <h2 className='login-title'>Registrarme (Sign In)</h2>
+            <h2 className='login-title'>Register (Sign In)</h2>
             <form className='form' onSubmit={ (e) => { this.createNewUser(e) } }>
               <div>
                 <TextField
-                  hintText='Your name'
+                  hintText='Peter'
                   floatingLabelText='Your name'
-                  placeholder='Type in your name'
                   name='signInName'
                 />
               </div>
               <div>
                 <TextField
-                  hintText='Your email'
+                  hintText='something@default.com'
                   floatingLabelText='Your email'
-                  placeholder='Type in your e-mail'
                   name='signInEmail'
                 />
               </div>
               <div>
                 <TextField
-                  hintText='Password Field'
+                  hintText='***********'
                   floatingLabelText='Your Password'
                   type='password'
-                  defaultValue='Type in your password'
                   name='signInPass'
                 />
               </div>
               <div>
                 <TextField
-                  hintText='Phone Field'
+                  hintText='5523451243'
                   floatingLabelText='Your Phone Number'
-                  type='password'
-                  defaultValue='Type in your phone number'
                   name='signInPhone'
                 />
               </div>
@@ -76,7 +73,7 @@ class SignIn extends Component {
           </div>
         </Paper> 
 	  </div>
-  	)
+  	);
   }
 }
 

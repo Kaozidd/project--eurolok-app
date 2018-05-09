@@ -2,17 +2,17 @@
   "name": "devjobs",
   "version": "1.0.0",
   "description": "## Project Overview",
-  "main": "server.js",
+  "main": "reactApp.ejs",
   "scripts": {
-    "dev": "npm-run-all dev:server",
-    "dev:server": "NODE_ENV=development node server.js server.js --watch src --watch server.js",
     "start": "nodemon server.js",
+    "build": "./node_modules/.bin/webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "build": "^0.1.4",
     "knex": "^0.13.0",
     "mysql": "^2.15.0",
     "npm-run-all": "4.1.2",
@@ -22,15 +22,21 @@
     "passport-local": "1.0.0",
     "react": "16.1.0",
     "react-dom": "16.1.0",
-    "react-router-dom": "4.2.0"
+    "react-router-dom": "4.2.0",
+    "webpack-build": "^1.0.1"
   },
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-loader": "7.1.2",
-    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "1.6.1",
-    "babel-preset-react": "6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
     "cors": "^2.8.4",
@@ -40,7 +46,8 @@
     "morgan": "^1.9.0",
     "nodemon": "^1.17.3",
     "superagent": "^3.8.3",
-    "webpack": "3.8.1"
+    "webpack": "^3.11.0",
+    "webpack-bundle-tracker": "^0.3.0"
   },
   "repository": {
     "type": "git",

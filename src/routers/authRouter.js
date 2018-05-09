@@ -1,7 +1,7 @@
 const passport = require('passport')
 
 let Router = require('express').Router;
-let User = require('../models/User.js')
+let NetUser = require('../models/NetUser.js')
 let getUserByEmail = require('../middleware/auth--getUserByEmail.js')
 let saveNewUser = require('../middleware/auth--saveNewUser.js')
 let {

@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';
 
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
+import {
+  BrowserRouter as Router, 
+  Switch, 
+  Route, 
+  Link, 
+  Redirect
+} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import SignIn from './components/SignIn';
-import LogIn from './components/LogIn';
+import Header from '../components/Header';
+import SignIn from '../components/SignIn';
+import LogIn from '../components/LogIn';
 
 const API_URL = 'http://localhost:3000'
 
@@ -22,24 +29,37 @@ const AuthService = {
   }
 }
 
-class App extends React.Component {
+class Home extends Component {
+  render() {
+    return <h3>Home Component View</h3>
+  }
+}
+
+class Patch extends Component {
+  render() {
+    return <p>Patching Component</p>
+  }
+}
+
+class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: {},
+      user: [],
       loggedOut: true,
-      display: 'none'
+      userType: 'none'
     };
   }
+  
   componentWillMount() {
     request
       .get(`${API_URL}/auth/current`)
-      .then(function(data) {
+      .then((data) => {
         if (typeof data.body.email === 'string') {
           this.setState({
             user: data.body,
             loggedOut: false,
-            display: ''
+            userType: ''
           })
         }
       })
@@ -50,38 +70,61 @@ class App extends React.Component {
   updateStateAtUserLogin = () => {
     request
       .get(`${API_URL}/auth/current`)
-      .then(function(data) {
+      .then((data) => {
         this.setState({
           user: data.body,
           loggedOut: false,
-          display: ''
+          userType: data.body.roleId.toString()
         })
       })
       .catch(function(e) {
         console.log(e)
       })
   };
-  updateStateAtUserLogout = (logOut) {
+  updateStateAtUserLogout = (logOut) => {
     this.setState({
-      user: {},
-      loggedOut: logOut,
-      display: 'none'
-    })
+      user: [],
+      loggedOut: true,
+      userType: logOut,
+      userType: 'none'
+    });
   }  
   render (){
-    return 
-    <MuiThemeProvider>
+    return (
       <div>
-        <h1>Hey</h1>  
-        <SignIn />
-        <LogIn updateStateOnLogin={this.updateStateAtUserLogin}/>
+        { this.state.logOut !== true ?
+          <div>
+            <Header 
+              currentUser={this.state.user}
+              updateStateOnLogout={this.updateStateAtUserLogout}
+              userType={this.state.userType}
+            />
+            <h1>Hey</h1>
+            <p>Paragraph</p>
+            <img src='/assets/team-pictures/carstenn.jpg' />
+            <Switch>
+              <Route exact path='/team' component={Home} />
+              <Route exact path='/shop' component={Patch} />
+              <Route exact path='/book' component={Patch} />
+            </Switch>
+          </div>
+        :
+          <div className='login--signin'>
+            <SignIn />
+            <LogIn 
+              updateStateOnLogin={this.updateStateAtUserLogin} 
+            />
+          </div>
+        }
       </div>
-    </MuiThemeProvider>
+    );
   }
 }
 
 ReactDOM.render(
   <Router>
-    <App/>
+    <MuiThemeProvider>
+      <App/>
+    </MuiThemeProvider>
   </Router>, document.getElementById('app-container')
 );

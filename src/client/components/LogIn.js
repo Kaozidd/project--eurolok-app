@@ -15,8 +15,8 @@ class LogIn extends Component {
   	  password: e.target.signInPass.value,
   	}
   	request
-  	  .post(`${API_URL}/auth/register`)
-  	  .send(newUserData)
+  	  .post(`${API_URL}/auth/login`)
+  	  .send(userData)
   	  .then(function(response) {
   	  	alert(`Welcome back, ${response.body.name}`)
         this.props.updateStateOnLogin()
@@ -32,28 +32,26 @@ class LogIn extends Component {
         <Paper className='login-material-ui-paper' zDepth={5} >
           <div className='login-form-container'>
             <h2 className='login-title'>Access (Log In)</h2>
-            <form className='form' onSubmit={ (e) => { this.createNewUser(e) } }>
+            <form className='form' onSubmit={ (e) => { this.login(e) } }>
               <div>
                 <TextField
-                  hintText='Your email'
-                  floatingLabelText='Your email'
+                  hintText='something@default.com'
+                  floatingLabelText='Your user (email)'
                   type='text'
-                  placeholder='Type in your e-mail'
-                  name='signInEmail'
+                  name='email'
                 />
               </div>
               <div>
                 <TextField
-                  hintText='Password'
+                  hintText='*********'
                   floatingLabelText='Password'
                   type='password'
-                  name='signInPass'
-                  placeholder='Type in your password'
+                  name='password'
                 />
               </div>
               <RaisedButton
                 className='login-button'
-                label="Signin"
+                label="Login"
                 type='submit'
               />
             </form>
