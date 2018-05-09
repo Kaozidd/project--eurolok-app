@@ -1,34 +1,87 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import request from 'superagent';
 
-const DynamicRoute = (props) => {
-  const styleObj = {padding: '3rem', fontSize: '6vw', color: '#0E6655'}
-  return <h2 style={styleObj}>Dynamic Route: <u>{props.match.params.routeVal}</u></h2>
-}
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-const DemoComponent = () => {
-  const styleObj = {padding: '3rem', fontSize: '6vw', color: 'slateblue'}
-  return <h2 style={styleObj}>Demo Route U</h2>
-}
+import SignIn from './components/SignIn';
+import LogIn from './components/LogIn';
 
-const NoMatch404 = () => {
-  const styleObj = {padding: '3rem', fontSize: '6vw', color: 'indianred'}
-  return <h2 style={styleObj}>No Match - 404</h2>
-}
+const API_URL = 'http://localhost:3000'
 
-class App extends React.Component {
-  render (){
-    return <div>
-      <Switch>
-        <Route path='/ex/:routeVal' component={DynamicRoute}/>
-        <Route path='/demo' component={DemoComponent}/>
-        <Route component={NoMatch404}/>
-      </Switch>
-    </div>
+const AuthService = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true,
+    setTimeout(cb, 100)
+  },
+  signout(cb) {
+    this.isAuthenticated = false,
+    setTimeout(cb, 100)
   }
 }
 
-ReactDOM.render(<BrowserRouter>
-  <App/>
-</BrowserRouter>, document.getElementById('app-container'));
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      user: {},
+      loggedOut: true,
+      display: 'none'
+    };
+  }
+  componentWillMount() {
+    request
+      .get(`${API_URL}/auth/current`)
+      .then(function(data) {
+        if (typeof data.body.email === 'string') {
+          this.setState({
+            user: data.body,
+            loggedOut: false,
+            display: ''
+          })
+        }
+      })
+      .catch(function(e) {
+        console.log(e)
+      })
+  };
+  updateStateAtUserLogin = () => {
+    request
+      .get(`${API_URL}/auth/current`)
+      .then(function(data) {
+        this.setState({
+          user: data.body,
+          loggedOut: false,
+          display: ''
+        })
+      })
+      .catch(function(e) {
+        console.log(e)
+      })
+  };
+  updateStateAtUserLogout = (logOut) {
+    this.setState({
+      user: {},
+      loggedOut: logOut,
+      display: 'none'
+    })
+  }  
+  render (){
+    return 
+    <MuiThemeProvider>
+      <div>
+        <h1>Hey</h1>  
+        <SignIn />
+        <LogIn updateStateOnLogin={this.updateStateAtUserLogin}/>
+      </div>
+    </MuiThemeProvider>
+  }
+}
+
+ReactDOM.render(
+  <Router>
+    <App/>
+  </Router>, document.getElementById('app-container')
+);

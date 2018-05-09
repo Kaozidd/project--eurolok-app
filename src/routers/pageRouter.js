@@ -2,7 +2,11 @@ const Router = require('express').Router
 const pageRouter = Router()
 
 pageRouter.get('/', function(req, res) {
-	res.send('Home View')
+	res.render('reactApp.ejs')
+})
+
+pageRouter.get('/about', function(req, res) {
+	res.render('about.ejs')
 })
 
 pageRouter.get('/services', function(req, res) {
