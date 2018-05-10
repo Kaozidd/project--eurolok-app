@@ -6,11 +6,11 @@ exports.up = function(knex, Promise) {
       t.integer('customerId')
         .unsigned()
         .references('id')
-        .inTable('netUsers')
+        .inTable('user')
       t.integer('teamMemberId')
         .unsigned()
         .references('id')
-        .inTable('netUsers')
+        .inTable('user')
     })
 };
 

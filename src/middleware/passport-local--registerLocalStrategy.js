@@ -1,4 +1,4 @@
-const NetUser = require('../models/NetUser.js')
+const User = require('../models/User.js')
 const LocalStrategy = require('passport-local').Strategy
 
 const userPasswordFields = {
@@ -9,7 +9,7 @@ const userPasswordFields = {
 async function  localStrategyHandler(inputEmail, inputPassword, doneCb) {
 
   try {
-    const user = await NetUser
+    const user = await User
       .query()
       .where({email: inputEmail})
       .first()

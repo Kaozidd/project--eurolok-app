@@ -1,4 +1,4 @@
-const NetUser = require('../models/NetUser.js')
+const User = require('../models/User.js')
 
 exports.handleRegisterRes = function(req, res){
   const newUser = res.locals.newUser
@@ -21,7 +21,6 @@ exports.handleLoginRes = (req, res)=>{
 }
 
 exports.handleCurrentAuthRes = (req, res)=>{
-    console.log(res.locals)
     const user = req.user || {}
     res.status(200).json(user)
 }

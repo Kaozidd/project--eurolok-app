@@ -17,6 +17,9 @@ const {
 	configSerializeUser
 } = require('./src/helpers/passport-local--sessionActions')
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 app.use(cookieParser())
 app.use(cookieSession({
 	name: 'inSession',
@@ -34,7 +37,6 @@ passport.deserializeUser(configDeserializeUser)
 const dbConnect = require('./src/database/dbConnect')
 const knexFile = require('./knexFile') 
 
-
 const pageRouter = require('./src/routers/pageRouter')
 const apiRouter = require('./src/routers/apiRouter')
 const authRouter = require('./src/routers/authRouter')
@@ -50,8 +52,6 @@ app.set('view engine', 'ejs')
 app.set('views', `${__dirname}/src/views`)
 app.use(express.static(`${__dirname}/public`))
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 
 app.use(logger('tiny'))
 app.use(cors())

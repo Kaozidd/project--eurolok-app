@@ -1,11 +1,11 @@
-const NetUser = require('../models/NetUser.js')
+const User = require('../models/User.js')
 const handleDbError = require('../helpers/handleDbError.js')
 
 module.exports = async function getUserByEmail(req, res, next){
   const reqBody = req.body
 
   try {
-    const user = await NetUser
+    const user = await User
       .query()
       .first()
       .where({ email: reqBody.email })

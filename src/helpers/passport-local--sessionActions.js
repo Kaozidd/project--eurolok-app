@@ -1,4 +1,4 @@
-const NetUser = require('../models/NetUser.js')
+const User = require('../models/User.js')
 
 
 exports.configSerializeUser = function( config={} ) {
@@ -9,7 +9,7 @@ exports.configSerializeUser = function( config={} ) {
 
 exports.configDeserializeUser = function( config={} ) {
   return async function(userId, done){
-    const usr = await NetUser
+    const usr = await User
       .query()
       .findById(userId)
       .returning('*')

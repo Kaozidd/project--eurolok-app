@@ -1,4 +1,4 @@
-const NetUser = require('../models/NetUser.js')
+const User = require('../models/User.js')
 const handleDbError = require('../helpers/handleDbError.js')
 
 module.exports = async function saveNewUser(req, res, next){
@@ -7,12 +7,10 @@ module.exports = async function saveNewUser(req, res, next){
 
     if(res.locals.user) return next()
 
-    const newUser = await NetUser
+    const newUser = await User
       .query()
       .insert(req.body)
-      .then(function(newAcc) {
-        res.json(newAcc).status(200)
-      })
+      .returning('*')
 
     res.locals.newUser = newUser
 

@@ -1,10 +1,10 @@
-const NetUser = require('../models/NetUser')
+const User = require('../models/User')
 const Appointment = require('../models/Appointment')
 const Sale = require('../models/Sale')
 const SaleDetails = require('../models/SaleDetails')
 
 exports.getAccounts = function(req, res) {
-  NetUser
+  User
   	.query()
   	.then(function(data) {
   	  res.json(data)
@@ -13,7 +13,7 @@ exports.getAccounts = function(req, res) {
 
 exports.getSingleAccount = function(req, res) {
   const accountId = parseInt(req.params.id)
-  NetUser
+  User
     .query()
     .findById(accountId)
     .then(function(account) {
@@ -22,7 +22,7 @@ exports.getSingleAccount = function(req, res) {
 }
 
 exports.createNewAccount = function(req, res) {
-  NetUser
+  User
   	.query()
   	.insert(req.body)
   	.then(function(newAcc) {
@@ -33,7 +33,7 @@ exports.createNewAccount = function(req, res) {
 exports.editAccount = function(req, res) {
   const accountId = parseInt(req.params.id);
   const newData = req.body
-  NetUser
+  User
     .query()
     .patchAndFetchById(accountId, newData)
     .then(function(updatedJob) {
@@ -47,7 +47,7 @@ exports.editAccount = function(req, res) {
 
 exports.deleteAccount = function(req, res) {
   const accountId = parseInt(req.params.id)
-  NetUser
+  User
     .query()
     .deleteById(accountId)
     .then(function(rowsDeleted) {

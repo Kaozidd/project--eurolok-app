@@ -1,3 +1,4 @@
+
 const data = [
   {
     name: 'Frank',
@@ -65,8 +66,8 @@ const data = [
 ]
 
 exports.seed = function(knex, Promise) {
-  return knex('netUsers').del()
+  return knex('user').del()
     .then(function () {
-      return knex('netUsers').insert(data);
+      return knex('user').insert(data);
     });
 };

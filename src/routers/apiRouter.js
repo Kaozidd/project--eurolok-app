@@ -3,7 +3,7 @@ const apiRouter = Router();
 
 const { isUserAuthenticated } = require('../modules/isUserAuthenticated')
 
-const NetUser = require('../models/NetUser')
+const User = require('../models/User')
 const Appointment = require('../models/Appointment')
 const Sale = require('../models/Sale')
 const SaleDetails = require('../models/SaleDetails')

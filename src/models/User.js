@@ -52,8 +52,24 @@ class User extends Password(objection.Model) {
   }
 
   static get relationMappings(){
+    const Sale = require('./Sale')
     return {
-
+      sales: {
+        relation: Model.HasManyRelation,
+        modelClass: sales,
+        join: {
+          from: 'user.id',
+          to: 'sales.customerId'
+        }
+      },
+      sales: {
+        relation: Model.HasManyRelation,
+        modelClass: sales,
+        join: {
+          from: 'user.id',
+          to: 'sales.teamMemberId'
+        }
+      }
     }
   }
 }
