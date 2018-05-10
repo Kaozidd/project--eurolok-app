@@ -22,7 +22,9 @@
     "passport-local": "1.0.0",
     "react": "16.1.0",
     "react-dom": "16.1.0",
-    "react-router-dom": "4.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "^1.1.4",
     "webpack-build": "^1.0.1"
   },
   "devDependencies": {
@@ -45,6 +47,7 @@
     "material-ui": "^0.20.0",
     "morgan": "^1.9.0",
     "nodemon": "^1.17.3",
+    "react-router-dom": "^4.3.0-rc.3",
     "superagent": "^3.8.3",
     "webpack": "^3.11.0",
     "webpack-bundle-tracker": "^0.3.0"
