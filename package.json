@@ -1,12 +1,53 @@
 {
-  "name": "EuroLookApp--refactor",
+  "name": "eurolookapp--refactor",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This is an App for EuroLook customers and team members",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Kaozidd",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kaozidd/project--eurolok-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kaozidd/project--eurolok-app/issues"
+  },
+  "homepage": "https://github.com/Kaozidd/project--eurolok-app#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "1.4.3",
+    "cookie-session": "2.0.0-beta.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "knex": "^0.13.0",
+    "morgan": "^1.9.0",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.17.4",
+    "objection": "1.1.8",
+    "objection-password": "1.0.0",
+    "passport": "0.4.0",
+    "passport-local": "1.0.0",
+    "react": "16.1.0",
+    "react-dom": "16.1.0",
+    "react-router-dom": "4.2.0",
+    "superagent": "^3.8.3"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "ejs": "^2.6.1",
+    "material-ui": "^0.20.0",
+    "webpack": "3.8.1"
+  }
 }
