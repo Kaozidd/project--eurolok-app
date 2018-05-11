@@ -18,7 +18,6 @@ const {
 const dbConnect = require('./src/database/dbConnect')
 const knexFile = require('./knexFile') 
 
-const pageRouter = require('./src/routers/pageRouter')
 const apiRouter = require('./src/routers/apiRouter')
 const authRouter = require('./src/routers/authRouter')
 
@@ -56,12 +55,11 @@ app.use(express.static(`${__dirname}/public`))
 app.use(logger('tiny'))
 app.use(cors())
 
-app.use('/', pageRouter)
 app.use('/api', apiRouter)
 app.use('/auth', authRouter)
 
 app.use(function(req, res) {
-	res.render('404.ejs')
+	res.render('reactApp.ejs')
 })
 
 const PORT = process.env.PORT || 3000
