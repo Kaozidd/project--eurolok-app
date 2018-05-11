@@ -3,10 +3,16 @@
   color: * base-color; }
 
 .grid {
-  display: flex; }
+  display: flex;
+  width: 60%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  align-content: center; }
 
 .log-container {
-  border-radius: 20px;
-  padding: 15px; }
+  padding: 15px;
+  margin: 10px;
+  flex-grow: 1; }
   .log-container h2 {
     margin: 0; }

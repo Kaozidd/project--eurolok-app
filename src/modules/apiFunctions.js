@@ -36,7 +36,7 @@ exports.editAccount = function(req, res) {
   User
     .query()
     .patchAndFetchById(accountId, newData)
-    .then(function(updatedJob) {
+    .then((updatedJob) => {
       res.json(updatedJob).status(200)
       console.log(
         `${req.body.name} account updated!\n

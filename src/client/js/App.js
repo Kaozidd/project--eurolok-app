@@ -14,44 +14,9 @@ import {
 import Header from './components/Header';
 import SignIn from './components/SignIn';
 import LogIn from './components/LogIn';
+import Board from './components/Board';
 
-const API_URL = 'http://localhost:3000'
-
-const AuthService = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true,
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.isAuthenticated = false,
-    setTimeout(cb, 100)
-  }
-}
-
-class AdminBoard extends Component {
-  render() {
-    return <h1>Admin's Board, Baby!</h1>
-  }
-}
-
-class CustomerBoard extends Component {
-  render() {
-    return <h1>Customer's Board, Baby!</h1>
-  }
-}
-
-class TeamMemberBoard extends Component {
-  render() {
-    return <h1>TeamMemberBoard's Board, Baby!</h1>
-  }
-}
-
-class Services extends Component {
-  render() {
-    return <h1>Services</h1>
-  }
-}
+const API_URL = 'http://localhost:3000';
 
 class App extends Component {
   constructor() {
@@ -59,7 +24,6 @@ class App extends Component {
     this.state = {
       user: {},
       loggedOut: true,
-      userType: 'none'
     };
   }
   componentWillMount() {
@@ -70,7 +34,6 @@ class App extends Component {
           this.setState({
             user: data.body,
             loggedOut: false,
-            userType: data.body.roleId.toString()
           })
         }
       })
@@ -85,7 +48,6 @@ class App extends Component {
         this.setState({
           user: data.body,
           loggedOut: false,
-          userType: data.body.roleId.toString()
         })
       })
       .catch(function(e) {
@@ -113,12 +75,7 @@ class App extends Component {
             <Header isAuthenticated={this.updateStateAtUserLogout}/>
           </div>
           
-          <Switch>
-              <Route exact path='/' component={CustomerBoard} />
-              <Route exact path='/admin' component={AdminBoard} />
-              <Route exact path='/team' component={TeamMemberBoard} />
-              <Route exact path='/services' component={Services} />
-          </Switch>
+          <Board />
         
         </div>
       }

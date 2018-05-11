@@ -2,7 +2,7 @@ const Password = require('objection-password')();
 const objection = require('objection');
 const Model = objection.Model
 
-function _validateInput(modelInstance){
+_validateInput = (modelInstance) => {
   if (modelInstance.id) {
     throw new objection.ValidationError({
       id: [{
