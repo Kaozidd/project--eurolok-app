@@ -29,9 +29,7 @@ module.exports = {
             'es2015',
             'flow', 
             'react',
-            'stage-1',
-            'stage-2',
-            'stage-3'
+            'stage-2'
           ]
         }
       }

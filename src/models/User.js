@@ -56,7 +56,7 @@ class User extends Password(objection.Model) {
     return {
       sales: {
         relation: Model.HasManyRelation,
-        modelClass: sales,
+        modelClass: Sale,
         join: {
           from: 'user.id',
           to: 'sales.customerId'
@@ -64,7 +64,7 @@ class User extends Password(objection.Model) {
       },
       sales: {
         relation: Model.HasManyRelation,
-        modelClass: sales,
+        modelClass: Sale,
         join: {
           from: 'user.id',
           to: 'sales.teamMemberId'

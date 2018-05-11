@@ -1,11 +1,9 @@
 const express = require('express')
-const app = express()
 const { Model } = require('objection')
 const ejs = require('ejs')
-
 const bodyParser = require('body-parser')
+const logger = require('morgan')
 const cors = require('cors')
-const logger	 = require('morgan')
 
 const passport = require('passport')
 const cookieSession = require('cookie-session')
@@ -17,8 +15,20 @@ const {
 	configSerializeUser
 } = require('./src/helpers/passport-local--sessionActions')
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+const dbConnect = require('./src/database/dbConnect')
+const knexFile = require('./knexFile') 
+
+const pageRouter = require('./src/routers/pageRouter')
+const apiRouter = require('./src/routers/apiRouter')
+const authRouter = require('./src/routers/authRouter')
+
+const app = express()
+
+const appConnectToDb = dbConnect(knexFile.development)
+
+Model.knex(appConnectToDb)
+
+app.locals.db = appConnectToDb
 
 app.use(cookieParser())
 app.use(cookieSession({
@@ -31,27 +41,17 @@ app.use(cookieSession({
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(registerLocalStrategy())
-passport.serializeUser(configSerializeUser)
-passport.deserializeUser(configDeserializeUser)
-
-const dbConnect = require('./src/database/dbConnect')
-const knexFile = require('./knexFile') 
-
-const pageRouter = require('./src/routers/pageRouter')
-const apiRouter = require('./src/routers/apiRouter')
-const authRouter = require('./src/routers/authRouter')
-
-const appConnectToDb = dbConnect(knexFile.development)
-
-Model.knex(appConnectToDb)
-
-app.locals.db = appConnectToDb
+passport.serializeUser(configSerializeUser())
+passport.deserializeUser(configDeserializeUser())
 
 app.engine('ejs', ejs.renderFile)
 app.set('view engine', 'ejs')
 app.set('views', `${__dirname}/src/views`)
-app.use(express.static(`${__dirname}/public`))
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+app.use(express.static(`${__dirname}/public`))
 
 app.use(logger('tiny'))
 app.use(cors())

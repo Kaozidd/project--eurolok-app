@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import request from 'superagent';
-
-import {
-  BrowserRouter as Router, 
-  Switch, 
-  Route, 
-  Link, 
-  Redirect
-} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import Header from '../components/Header';
-import SignIn from '../components/SignIn';
-import LogIn from '../components/LogIn';
+import BrowserRouter from 'react-router-dom';
+const Router = BrowserRouter;
+import Switch from 'react-router-dom';
+import Route from 'react-router-dom';
+import Link from 'react-router-dom';
+import Redirect from 'react-router-dom';
+
+
+import Header from './components/Header';
+import SignIn from './components/SignIn';
+import LogIn from './components/LogIn';
 
 const API_URL = 'http://localhost:3000'
 
@@ -29,28 +29,15 @@ const AuthService = {
   }
 }
 
-class Home extends Component {
-  render() {
-    return <h3>Home Component View</h3>
-  }
-}
-
-class Patch extends Component {
-  render() {
-    return <p>Patching Component</p>
-  }
-}
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      user: [],
+      user: {},
       loggedOut: true,
       userType: 'none'
     };
   }
-  
   componentWillMount() {
     request
       .get(`${API_URL}/auth/current`)
@@ -84,47 +71,40 @@ class App extends Component {
   updateStateAtUserLogout = (logOut) => {
     this.setState({
       user: [],
-      loggedOut: true,
-      userType: logOut,
+      loggedOut: logOut,
       userType: 'none'
     });
-  }  
-  render (){
+  }
+  render () {
     return (
       <div>
-        { this.state.logOut !== true ?
+      { this.state.loggedOut ?
+        <div>
+          <SignIn />
+          <LogIn logUser={this.updateStateAtUserLogin}/>
+        </div>
+      :
+        <div>
           <div>
-            <Header 
-              currentUser={this.state.user}
-              updateStateOnLogout={this.updateStateAtUserLogout}
-              userType={this.state.userType}
-            />
+            <Header isAuthenticated={this.updateStateAtUserLogout}/>
+          </div>
+          <div>
             <h1>Hey</h1>
             <p>Paragraph</p>
-            <img src='/assets/team-pictures/carstenn.jpg' />
-            <Switch>
-              <Route exact path='/team' component={Home} />
-              <Route exact path='/shop' component={Patch} />
-              <Route exact path='/book' component={Patch} />
-            </Switch>
+            <img src='/assets/team-pictures/carsten.jpg' />
           </div>
-        :
-          <div className='login--signin'>
-            <SignIn />
-            <LogIn 
-              updateStateOnLogin={this.updateStateAtUserLogin} 
-            />
-          </div>
-        }
+        </div>
+      }
       </div>
     );
   }
 }
 
 ReactDOM.render(
-  <Router>
-    <MuiThemeProvider>
-      <App/>
-    </MuiThemeProvider>
-  </Router>, document.getElementById('app-container')
+  // <MuiThemeProvider>
+    // <Router >
+      <App />
+    // </Router>
+  // </MuiThemeProvider>
+  , document.getElementById('app-container')
 );

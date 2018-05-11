@@ -5,7 +5,8 @@
   "main": "reactApp.ejs",
   "scripts": {
     "start": "nodemon server.js",
-    "build": "./node_modules/.bin/webpack --watch",
+    "build:dev": "./node_modules/.bin/webpack --watch",
+    "build:prod": "./node_modules/.bin/webpack -p --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -49,6 +50,7 @@
     "nodemon": "^1.17.3",
     "react-router-dom": "^4.3.0-rc.3",
     "superagent": "^3.8.3",
+    "uglify-js-brunch": "^2.10.0",
     "webpack": "^3.11.0",
     "webpack-bundle-tracker": "^0.3.0"
   },
