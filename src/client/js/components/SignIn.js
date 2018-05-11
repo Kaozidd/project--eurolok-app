@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
 const API_URL = 'http://localhost:3000';
 
 class SignIn extends Component {
@@ -27,41 +31,43 @@ class SignIn extends Component {
   render() {
   	return (
   	  <div className='grid'>
-        <div className='login-form-container'>
-          <h2 className='login-title'>Register (Sign In)</h2>
-          <form className='form' onSubmit={(e) => { this.createNewUser(e) } }>
-            <div>
-              <input
-                placeholder='Your name'
-                name='signInName'
+        <Paper className='login-material-ui-paper' zDepth={5} >
+          <div className='login-form-container'>
+            <h2 className='login-title'>Register (Sign In)</h2>
+            <form className='form' onSubmit={(e) => { this.createNewUser(e) } }>
+              <div>
+                <TextField
+                  floatingLabelText='Your name'
+                  name='signInName'
+                />
+              </div>
+              <div>
+                <TextField 
+                  floatingLabelText='Your email'
+                  name='signInEmail'
+                />
+              </div>
+              <div>
+                <TextField 
+                  floatingLabelText='Your Password'
+                  type='password'
+                  name='signInPass'
+                />
+              </div>
+              <div>
+                <TextField 
+                  floatingLabelText='Your Phone Number'
+                  name='signInPhone'
+                />
+              </div>
+              <RaisedButton
+                className='login-button'
+                label="Signin"
+                type='submit'
               />
-            </div>
-            <div>
-              <input 
-                placeholder='Your email'
-                name='signInEmail'
-              />
-            </div>
-            <div>
-              <input 
-                placeholder='Your Password'
-                type='password'
-                name='signInPass'
-              />
-            </div>
-            <div>
-              <input 
-                placeholder='Your Phone Number'
-                name='signInPhone'
-              />
-            </div>
-            <button
-              className='login-button'
-              label="Signin"
-              type='submit'
-            >Button</button>
-          </form>
-        </div>
+            </form>
+          </div>
+        </Paper>  
 	    </div>
   	);
   }

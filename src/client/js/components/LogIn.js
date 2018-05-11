@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 
+import Paper from 'material-ui/Paper';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
 const API_URL = 'http://localhost:3000';
 
 class LogIn extends Component {
@@ -25,30 +29,32 @@ class LogIn extends Component {
   render() {
   	return (
   	  <div className='grid'>
-        <div className='login-form-container'>
-          <h2 className='login-title'>Access (Log In)</h2>
-          <form className='form' onSubmit={ (e) => { this.login(e) } }>
-            <div>
-              <input
-                placeholder='Your user (email)'
-                type='text'
-                name='signInEmail'
+        <Paper className='login-material-ui-paper' zDepth={5} >
+          <div className='login-form-container'>
+            <h2 className='login-title'>Access (Log In)</h2>
+            <form className='form' onSubmit={ (e) => { this.login(e) } }>
+              <div>
+                <TextField
+                  floatingLabelText='Your user (email)'
+                  type='text'
+                  name='signInEmail'
+                />
+              </div>
+              <div>
+                <TextField
+                  floatingLabelText='Your password'
+                  type='password'
+                  name='signInPass'
+                />
+              </div>
+              <RaisedButton
+                className='login-button'
+                label="Login"
+                type='submit'
               />
-            </div>
-            <div>
-              <input
-                placeholder='Password'
-                type='password'
-                name='signInPass'
-              />
-            </div>
-            <button
-              className='login-button'
-              label="Login"
-              type='submit'
-            >Log In</button>
-          </form>
-        </div>
+            </form>
+          </div>
+        </Paper>
 	    </div>
   	);
   }

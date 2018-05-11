@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import request from 'superagent';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import BrowserRouter from 'react-router-dom';
-const Router = BrowserRouter;
-import Switch from 'react-router-dom';
-import Route from 'react-router-dom';
-import Link from 'react-router-dom';
-import Redirect from 'react-router-dom';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from 'react-router-dom'
 
 import Header from './components/Header';
 import SignIn from './components/SignIn';
@@ -26,6 +26,18 @@ const AuthService = {
   signout(cb) {
     this.isAuthenticated = false,
     setTimeout(cb, 100)
+  }
+}
+
+class Home extends Component {
+  render() {
+    return <h1>Home</h1>
+  }
+}
+
+class Services extends Component {
+  render() {
+    return <h1>Services</h1>
   }
 }
 
@@ -46,7 +58,7 @@ class App extends Component {
           this.setState({
             user: data.body,
             loggedOut: false,
-            userType: ''
+            userType: data.body.roleId.toString()
           })
         }
       })
@@ -88,11 +100,10 @@ class App extends Component {
           <div>
             <Header isAuthenticated={this.updateStateAtUserLogout}/>
           </div>
-          <div>
-            <h1>Hey</h1>
-            <p>Paragraph</p>
-            <img src='/assets/team-pictures/carsten.jpg' />
-          </div>
+          <Switch>
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/services' component={Services} />
+          </Switch>
         </div>
       }
       </div>
@@ -101,10 +112,9 @@ class App extends Component {
 }
 
 ReactDOM.render(
-  // <MuiThemeProvider>
-    // <Router >
+  <MuiThemeProvider>
+    <Router >
       <App />
-    // </Router>
-  // </MuiThemeProvider>
-  , document.getElementById('app-container')
+    </Router>
+  </MuiThemeProvider>, document.getElementById('app-container')
 );
