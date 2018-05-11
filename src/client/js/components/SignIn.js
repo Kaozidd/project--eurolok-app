@@ -30,8 +30,8 @@ class SignIn extends Component {
   };
   render() {
   	return (
-  	  <div className='grid'>
-        <Paper className='login-material-ui-paper' zDepth={5} >
+  	  <div>
+        <Paper className='log-container' zDepth={5} >
           <div className='login-form-container'>
             <h2 className='login-title'>Register (Sign In)</h2>
             <form className='form' onSubmit={(e) => { this.createNewUser(e) } }>

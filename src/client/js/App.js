@@ -29,9 +29,21 @@ const AuthService = {
   }
 }
 
-class Home extends Component {
+class AdminBoard extends Component {
   render() {
-    return <h1>Home</h1>
+    return <h1>Admin's Board, Baby!</h1>
+  }
+}
+
+class CustomerBoard extends Component {
+  render() {
+    return <h1>Customer's Board, Baby!</h1>
+  }
+}
+
+class TeamMemberBoard extends Component {
+  render() {
+    return <h1>TeamMemberBoard's Board, Baby!</h1>
   }
 }
 
@@ -91,7 +103,7 @@ class App extends Component {
     return (
       <div>
       { this.state.loggedOut ?
-        <div>
+        <div className='grid'>
           <SignIn />
           <LogIn logUser={this.updateStateAtUserLogin}/>
         </div>
@@ -100,10 +112,14 @@ class App extends Component {
           <div>
             <Header isAuthenticated={this.updateStateAtUserLogout}/>
           </div>
+          
           <Switch>
-            <Route exact path='/home' component={Home} />
-            <Route exact path='/services' component={Services} />
+              <Route exact path='/' component={CustomerBoard} />
+              <Route exact path='/admin' component={AdminBoard} />
+              <Route exact path='/team' component={TeamMemberBoard} />
+              <Route exact path='/services' component={Services} />
           </Switch>
+        
         </div>
       }
       </div>

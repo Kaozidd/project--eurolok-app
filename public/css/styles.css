@@ -1,11 +1,12 @@
 * {
   font-family: 'Roboto', sans-serif;
-}
-
-.none {
-	display: none;
-}
+  color: * base-color; }
 
 .grid {
-	display: flex;
-}
+  display: flex; }
+
+.log-container {
+  border-radius: 20px;
+  padding: 15px; }
+  .log-container h2 {
+    margin: 0; }
