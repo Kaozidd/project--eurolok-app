@@ -31,7 +31,7 @@ body {
 .header {
   display: flex;
   color: #EEE;
-  background-color: #666; }
+  background: linear-gradient(#010101, #666); }
   .header--logo {
     height: 50px;
     width: 115px; }
@@ -41,6 +41,10 @@ body {
     .header--list--item {
       text-decoration: none;
       margin: 5px 10px; }
+      .header--list--item li {
+        color: #EEE; }
+      .header--list--item--none {
+        display: none; }
   .header--logout {
     aliggn-self: center; }
 
@@ -62,3 +66,37 @@ body {
 .profile--name {
   position: relative;
   left: 20px; }
+
+.agenda--container {
+  display: flex;
+  flex-direction: column; }
+
+.agenda--appointment {
+  border: 2px solid #666;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 15px 0; }
+  .agenda--appointment--title {
+    margin-left: 5px; }
+  .agenda--appointment--info {
+    display: flex; }
+    .agenda--appointment--info--img {
+      height: 100px;
+      width: 100px;
+      margin: 10px;
+      border-radius: 5px; }
+    .agenda--appointment--info--rate {
+      color: #666; }
+
+.mng-cst {
+  display: flex; }
+  .mng-cst--list {
+    width: 50%;
+    position: relative;
+    top: 50px;
+    transform: translateX(-50%); }

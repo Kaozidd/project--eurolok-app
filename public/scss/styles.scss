@@ -43,7 +43,7 @@ body {
 .header {
   display: flex;
   color: $white-color;
-  background-color: $gray-color;
+  background: linear-gradient($black-color, $gray-color);
   &--logo {
     height: 50px;
     width: 115px;
@@ -54,13 +54,18 @@ body {
     &--item {
       text-decoration: none;
       margin: 5px 10px;
+      & li {
+        color: $white-color;
+      }
+      &--none {
+        display: none;
+      }
     } 
   }
   &--logout {
     aliggn-self: center; 
   }
 }
-
 
 .log-container {
   padding: 15px;
@@ -83,5 +88,48 @@ body {
   &--name {
     position: relative;
     left: 20px;
+  }
+}
+
+.agenda {
+  &--container {
+    display: flex;
+    flex-direction: column;
+  }
+  &--appointment {
+    border: 2px solid $gray-color;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 15px 0;
+    &--title {
+      margin-left: 5px;
+    }
+    &--info {
+      display: flex;
+      &--img {
+        height: 100px;
+        width: 100px;
+        margin: 10px;
+        border-radius: 5px;
+      }
+      &--rate {
+        color: $gray-color;
+      }
+    }
+  }
+}
+
+.mng-cst {
+  display: flex;
+  &--list {
+    width: 50%;
+    position: relative;
+    top: 50px;
+    transform: translateX(-50%);
   }
 }

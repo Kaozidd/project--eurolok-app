@@ -3,10 +3,6 @@ import request from 'superagent';
 import { Link } from 'react-router-dom';
 
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import Menu from 'material-ui/Menu';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
 
 const API_URL = 'http://localhost:3000'
 
@@ -15,7 +11,7 @@ class Header extends Component {
     super(props);
     this.state = {
       userType: '',
-      anchorEl: null
+      menu: true
     }
   };
   componentWillMount() {
@@ -23,21 +19,21 @@ class Header extends Component {
       userType: this.props.userType
     })
   };
-  handleClick = (e) => {
+  menuClicked = () => {
     this.setState({
-      anchorEl: e.currentTarget
+      menu: false
     })
   };
-  handleClose = () => {
+  homeClicked = () => {
     this.setState({
-      anchorEl: null
+      menu: true
     })
   };
   logout = (e) => {
     request
       .get(`${API_URL}/auth/logout`)
-  	  .then((response) => {
-      const loggedOut = response.body.loggedOut
+  	  .then((data) => {
+      const loggedOut = data.body.loggedOut
       this.props.logOut(loggedOut)
     })
     .catch(function(e){
@@ -45,7 +41,6 @@ class Header extends Component {
     })
   };
   render() {
-    const { anchorEl } = this.state;
   	return (
   	  <div className='header'>
   	    <img 
@@ -55,45 +50,107 @@ class Header extends Component {
         <div>
           { this.state.userType == 0 ?
             <div>
-              <ul className='header--list'>
-                <Link 
-                  to='/profile' 
-                  className='header--list--item'
-                >
-                  <li>My Profile</li>
-                </Link>          
+              <ul className='header--list'>          
                 <Link 
                   to='/shop' 
-                  className='header--list--item'
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
                 >
                   <li>Purchase Items</li>
                 </Link>
                 <Link 
                   to='/book' 
-                  className='header--list--item'
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
                 >
                   <li>Book Appointment</li>
+                </Link>
+                <Link 
+                  to='/' 
+                  className={this.state.menu ? 'header--list--item--none' : 'header--list--item'}
+                  onClick={this.homeClicked}
+                >
+                  <li>Home</li>
                 </Link>
               </ul>
             </div>
             : null
           }
           { this.state.userType == 1 ?
-            <Menu>
-              <Link to='/profile'><MenuItem>My Profile</MenuItem></Link>
-              <Link to='/mngcst'><MenuItem>Manage Customers</MenuItem></Link>
-              <Link to='/mngtm'><MenuItem>Manage Team</MenuItem></Link>
-              <Link to='/mngprsr'><MenuItem>Manage Products/Services</MenuItem></Link>
-              <Link to='/mngaps'><MenuItem>Manage Appointments</MenuItem></Link>
-            </Menu>
+            <div>
+              <ul className='header--list'>          
+                <Link 
+                  to='/profile' 
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
+                >
+                  <li>Profile</li>
+                </Link>
+                <Link 
+                  to='/mngcst' 
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
+                >
+                  <li>Manage Customers</li>
+                </Link>
+                <Link 
+                  to='/mngtm' 
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
+                >
+                  <li>Manage Team</li>
+                </Link>
+                <Link 
+                  to='/mngprsr' 
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
+                >
+                  <li>Manage Products/Services</li>
+                </Link>
+                <Link 
+                  to='/mngaps' 
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
+                >
+                  <li>Manage Appointments</li>
+                </Link>
+                <Link 
+                  to='/' 
+                  className={this.state.menu ? 'header--list--item--none' : 'header--list--item'}
+                  onClick={this.homeClicked}
+                >
+                  <li>Home</li>
+                </Link>
+              </ul>
+            </div>
           : null
           }
           { this.state.userType == 2 ?
-            <Menu>
-              <MenuItem>My Profile</MenuItem>
-              <MenuItem>My Services</MenuItem>
-              <MenuItem>Manage Appointments</MenuItem>
-            </Menu>
+            <div>
+              <ul className='header--list'>          
+                <Link 
+                  to='/services' 
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
+                >
+                  <li>My Services</li>
+                </Link>
+                <Link 
+                  to='/profile' 
+                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
+                  onClick={this.menuClicked}
+                >
+                  <li>Profile</li>
+                </Link>
+                <Link 
+                  to='/' 
+                  className={this.state.menu ? 'header--list--item--none' : 'header--list--item'}
+                  onClick={this.homeClicked}
+                >
+                  <li>Home</li>
+                </Link>
+              </ul>
+            </div>
           : null
           }
         </div>

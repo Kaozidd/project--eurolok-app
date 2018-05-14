@@ -3,7 +3,7 @@ import request from 'superagent';
 
 import Avatar from 'material-ui/Avatar';
 
-const API_URL = 'http://localhost/3000'
+const API_URL = 'http://localhost/3000';
 
 class Profile extends Component {
   constructor() {
@@ -11,7 +11,7 @@ class Profile extends Component {
   	this.state = {
   	  user: []
   	}
-  }
+  };
   componentWillMount() {
   	this.setState({
   	  user: this.props.user

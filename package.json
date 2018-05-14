@@ -7,6 +7,7 @@
     "start": "nodemon server.js",
     "build:sass": "node-sass ./public/scss/styles.scss -o ./public/css/",
     "build:dev": "./node_modules/.bin/webpack",
+    "build:devw": "./node_modules/.bin/webpack --watch",
     "build:prod": "./node_modules/.bin/webpack -p --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

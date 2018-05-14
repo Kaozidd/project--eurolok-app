@@ -104,8 +104,7 @@ class App extends Component {
           { this.state.userType == 0 ?
             <div className='container'>
               <Switch>
-                <Route exact path='/' component={CustomerBoard} />
-                <Route exact path='/profile' render={()=><Profile user={this.state.user}/>}/>
+                <Route exact path='/' render={()=><Profile user={this.state.user}/>}/>
                 <Route exact path='/shop' component={Store} />
                 <Route exact path='/book' component={Book} />
                 <Route component={NotFound} />
@@ -114,7 +113,7 @@ class App extends Component {
           : null
           }
           { this.state.userType == 1 ?
-            <div>
+            <div className='container'>
               <Switch>
                 <Route exact path='/' component={AdminBoard} />
                 <Route exact path='/profile' render={()=><Profile user={this.state.user}/>}/>
@@ -128,9 +127,10 @@ class App extends Component {
           : null
           }
           { this.state.userType == 2 ?
-            <div>
+            <div className='container'>
               <Switch>
                 <Route exact path='/' component={TeamBoard} />
+                <Route exact path='/profile' render={()=><Profile user={this.state.user}/>}/>
                 <Route exact path='/services' component={Services} />
                 <Route component={NotFound} />
               </Switch>
