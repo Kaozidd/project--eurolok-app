@@ -3,7 +3,7 @@ import request from 'superagent';
 
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 
 const API_URL = 'http://localhost:3000';
 
@@ -60,7 +60,7 @@ class SignIn extends Component {
                   name='signInPhone'
                 />
               </div>
-              <RaisedButton
+              <FlatButton
                 className='login-button'
                 label="Signin"
                 type='submit'

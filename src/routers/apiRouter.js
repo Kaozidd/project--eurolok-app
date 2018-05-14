@@ -25,7 +25,13 @@ const {
   getSingleAppointment,
   createNewAppointment,
   editAppointment,
-  deleteAppointment
+  deleteAppointment,
+
+  getSales,
+  getSingleSale,
+  createNewSale,
+  editSale,
+  deleteSale
 } = require('../modules/apiFunctions')
 
 apiRouter
@@ -33,7 +39,7 @@ apiRouter
   .get('/accounts', getAccounts)
   .get('/accounts/:id', getSingleAccount)
   .post('/accounts/', isUserAuthenticated, createNewAccount)
-  .put('/accounts/:id', isUserAuthenticated, editAccount)
+  .put('/accounts/:id', editAccount)
   .delete('/accounts/:id', isUserAuthenticated, deleteAccount)
 
   .get('/services', getServices)
@@ -47,5 +53,11 @@ apiRouter
   .post('/appointments', createNewAppointment)
   .put('/appointments/:id', editAppointment)
   .delete('/appointments/:id', deleteAppointment)
+
+  .get('/sales', getSales)
+  .get('/sales/:id', getSingleSale)
+  .post('/sales', createNewSale)
+  .put('/sales/:id', editSale)
+  .delete('/sales/:id', deleteSale)
 
 module.exports = apiRouter

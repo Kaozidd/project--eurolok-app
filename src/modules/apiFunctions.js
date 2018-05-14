@@ -36,12 +36,8 @@ exports.editAccount = function(req, res) {
   User
     .query()
     .patchAndFetchById(accountId, newData)
-    .then((updatedJob) => {
-      res.json(updatedJob).status(200)
-      console.log(
-        `${req.body.name} account updated!\n
-        email: ${req.body.email}`
-      )
+    .then(function(updatedAcc) {
+      res.json(updatedAcc).status(200)
     })
 }
 
@@ -79,8 +75,8 @@ exports.createNewService = function(req, res) {
   SaleDetails
   	.query()
   	.insert(req.body)
-  	.then(function(newAcc) {
-  	  res.json(newAcc).status(200)
+  	.then(function(newServ) {
+  	  res.json(newServ).status(200)
   	})
 }
 
@@ -90,8 +86,8 @@ exports.editService = function(req, res) {
   SaleDetails
   	.query()
   	.updateAndFetchById(serviceId, newData)
-    .then(function(updatedJob) {
-      res.json(updatedJob).status(200)
+    .then(function(updatedServ) {
+      res.json(updatedServ).status(200)
     })
 }
 
@@ -127,8 +123,8 @@ exports.createNewAppointment = function(req, res) {
   Appointment
   	.query()
   	.insert(req.body)
-  	.then(function(newAcc) {
-  	  res.json(newAcc).status(200)
+  	.then(function(newApp) {
+  	  res.json(newApp).status(200)
   	})
 }
 
@@ -138,8 +134,8 @@ exports.editAppointment = function(req, res) {
   Appointment
   	.query()
   	.updateAndFetchById(appointmentId, newData)
-    .then(function(updatedJob) {
-      res.json(updatedJob).status(200)
+    .then(function(updatedApp) {
+      res.json(updatedApp).status(200)
     })
 }
 
@@ -153,3 +149,50 @@ exports.deleteAppointment = function(req, res) {
     }).status(200)
 }
 
+exports.getSales = function(req, res) {
+  Sale
+    .query()
+    .then(function(data) {
+      res.json(data)
+    })
+}
+
+exports.getSingleSale = function(req, res) {
+  const salesId = parseInt(req.params.id)
+  Sale
+    .query()
+    .findById(salesId)
+    .then(function(sale) {
+      res.json(sale).status(200)
+    })
+}
+
+exports.createNewSale = function(req, res) {
+  Sale
+    .query()
+    .insert(req.body)
+    .then(function(newSale) {
+      res.json(newSale).status(200)
+    })
+}
+
+exports.editSale = function(req, res) {
+  const salesId = parseInt(req.params.id)
+  const newData = req.body
+  Sale
+    .query()
+    .updateAndFetchById(salesId, newData)
+    .then(function(updatedSale) {
+      res.json(updatedSale).status(200)
+    })
+}
+
+exports.deleteSale = function(req, res) {
+  const salesId = parseInt(req.params.id)
+  Sale
+    .query()
+    .deleteById(salesId)
+    .then(function(rowsDeleted) {
+      res.json({ appointmentDeleted: rowsDeleted })
+    }).status(200)
+}
