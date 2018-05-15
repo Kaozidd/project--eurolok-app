@@ -34,7 +34,7 @@ class SignIn extends Component {
         <Paper className='log-container' zDepth={5} >
           <div className='login-form-container'>
             <h2 className='login-title'>Register (Sign In)</h2>
-            <form className='form' onSubmit={(e) => { this.createNewUser(e) } }>
+            <form id='signInForm' onSubmit={(e) => { this.createNewUser(e) } }>
               <div>
                 <TextField
                   floatingLabelText='Your name'

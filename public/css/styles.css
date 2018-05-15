@@ -8,7 +8,7 @@ body {
 .container {
   background-color: #EEE;
   width: 60%;
-  height: 900px;
+  height: auto;
   position: relative;
   left: 50%;
   transform: translateX(-50%); }
@@ -56,20 +56,36 @@ body {
     margin: 0; }
 
 .profile--container {
+  display: flex;
+  flex-direction: column; }
+
+.profile--header {
+  background-image: url("/assets/images/hair-banner.jpg");
+  background-size: cover;
+  border: 1px solid #111;
+  height: 120px;
   display: flex; }
 
 .profile--avatar {
   position: relative;
-  top: 10px;
-  left: 10px; }
+  top: 15px;
+  left: 15px; }
 
 .profile--name {
   position: relative;
-  left: 20px; }
+  left: 40px;
+  color: #EEE; }
+
+.profile--article {
+  padding: 15px; }
 
 .agenda--container {
   display: flex;
   flex-direction: column; }
+
+.agenda--title, .agenda .mng-cst--title {
+  font-family: "Cinzel", serif;
+  margin-left: 20px; }
 
 .agenda--appointment {
   border: 2px solid #666;
@@ -94,9 +110,23 @@ body {
       color: #666; }
 
 .mng-cst {
-  display: flex; }
-  .mng-cst--list {
-    width: 50%;
-    position: relative;
-    top: 50px;
-    transform: translateX(-50%); }
+  display: flex;
+  flex-direction: column; }
+  .mng-cst--title, .mng-cst .book--title {
+    font-family: "Cinzel", serif;
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 40px; }
+
+.book--container {
+  background-image: url("http://www.alphamalegrooming.co.uk/wp-content/uploads/2015/07/service-banner.jpg");
+  background-size: cover; }
+
+.book--title {
+  font-family: "Cinzel", serif;
+  font-size: 30px;
+  margin-left: 20px;
+  padding-top: 40px; }
+
+.book--form {
+  padding: 15px; }

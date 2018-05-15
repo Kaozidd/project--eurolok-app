@@ -9,6 +9,7 @@ const Sale = require('../models/Sale')
 const SaleDetails = require('../models/SaleDetails')
 
 const {
+  getAccountsTeam,
   getAccounts,
   getSingleAccount,
   createNewAccount,
@@ -35,6 +36,8 @@ const {
 } = require('../modules/apiFunctions')
 
 apiRouter
+
+  .get('/accounts/team', getAccountsTeam)
 
   .get('/accounts', getAccounts)
   .get('/accounts/:id', getSingleAccount)

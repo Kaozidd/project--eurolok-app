@@ -50,14 +50,7 @@ class Header extends Component {
         <div>
           { this.state.userType == 0 ?
             <div>
-              <ul className='header--list'>          
-                <Link 
-                  to='/shop' 
-                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
-                  onClick={this.menuClicked}
-                >
-                  <li>Purchase Items</li>
-                </Link>
+              <ul className='header--list'>
                 <Link 
                   to='/book' 
                   className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
@@ -78,41 +71,13 @@ class Header extends Component {
           }
           { this.state.userType == 1 ?
             <div>
-              <ul className='header--list'>          
-                <Link 
-                  to='/profile' 
-                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
-                  onClick={this.menuClicked}
-                >
-                  <li>Profile</li>
-                </Link>
+              <ul className='header--list'>
                 <Link 
                   to='/mngcst' 
                   className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
                   onClick={this.menuClicked}
                 >
-                  <li>Manage Customers</li>
-                </Link>
-                <Link 
-                  to='/mngtm' 
-                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
-                  onClick={this.menuClicked}
-                >
-                  <li>Manage Team</li>
-                </Link>
-                <Link 
-                  to='/mngprsr' 
-                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
-                  onClick={this.menuClicked}
-                >
-                  <li>Manage Products/Services</li>
-                </Link>
-                <Link 
-                  to='/mngaps' 
-                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
-                  onClick={this.menuClicked}
-                >
-                  <li>Manage Appointments</li>
+                  <li>Manage Accounts</li>
                 </Link>
                 <Link 
                   to='/' 
@@ -136,13 +101,6 @@ class Header extends Component {
                   <li>My Services</li>
                 </Link>
                 <Link 
-                  to='/profile' 
-                  className={this.state.menu ? 'header--list--item' : 'header--list--item--none'}
-                  onClick={this.menuClicked}
-                >
-                  <li>Profile</li>
-                </Link>
-                <Link 
                   to='/' 
                   className={this.state.menu ? 'header--list--item--none' : 'header--list--item'}
                   onClick={this.homeClicked}
@@ -158,6 +116,14 @@ class Header extends Component {
           className='header--logout'
           onClick={this.logout}
           label='Log Out'
+          labelStyle={{
+            color: '#AAA'
+          }}
+          style={{
+            margin: '10px 50px 0 0',
+            position: 'relative',
+            left: '100px'
+          }}
           />
   	  </div>
   	);

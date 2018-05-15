@@ -11,7 +11,9 @@ class AdminBoard extends Component {
   	super();
   	this.state = {
   	  appo: [],
-  	  dialOpen: false
+  	  dialOpen: false,
+  	  confDial: false,
+  	  appoId: null
   	}
   };
   componentDidMount() {
@@ -29,13 +31,27 @@ class AdminBoard extends Component {
   handleOpen = (e) => {
   	this.setState({
   	  dialOpen: true,
-  	  itemId: e.target.key
+  	  appoId: true
   	})
+  	console.log(e.target)
   };
   handleClose = () => {
   	this.setState({
   	  dialOpen: false
   	})
+  };
+  handleCClose = () => {
+  	this.setState({
+  	  confDial: false
+  	})
+  };
+  confOpen = () => {
+  	this.setState({
+  	  confDial: true
+  	})
+  };
+  deleteAppointment = () => {
+
   }
   render() {
   	const actions = [
@@ -45,9 +61,10 @@ class AdminBoard extends Component {
   	    onClick={this.handleClose}
   	  />,
   	  <FlatButton
-  	    label='Submit'
+  	    label='Delete'
   	    primary={true}
-  	    onClick={this.handleClose}
+  	    keyboardFocused={true}
+  	    onClick={this.confOpen}
   	  />
   	]
   	return (
@@ -73,14 +90,32 @@ class AdminBoard extends Component {
   	  	  })}
   	  	</ul>
 	  	<Dialog
-	  	    title='Edit Agenda Item'
-	  	    actions={actions}
-	  	    modal={false}
-	  	    open={this.state.dialOpen}
-	  	    onRequestClose={this.handleClose}
-	  	  >
-	  	    Edit the selected item in Agenda.
-	  	  </Dialog>
+	  	  title='Edit Agenda Item'
+	  	  actions={actions}
+	  	  modal={false}
+	  	  open={this.state.dialOpen}
+	  	  onRequestClose={this.handleClose}
+	  	>
+	  	  Edit the selected item in Agenda.
+	  	</Dialog>
+	  	<Dialog
+	  	  modal={false}
+	  	  open={this.state.confDial}
+	  	  title='Are you sure you want to delete this?'
+	  	  actions={[
+	  	  	<FlatButton
+	  	  	  label='Cancel'
+	  	  	  primary={true}
+	  	  	  onClick={this.handleCClose}
+	  	  	/>,
+	  	  	<FlatButton
+	  	  	  label='Confirm'
+	  	  	  primary={true}
+	  	  	  keyboardFocused={true}
+	  	  	  onClick={this.deleteAppointment}
+	  	  	/>
+	  	  ]}
+	  	/>
   	  </div>
 
   	)

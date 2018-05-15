@@ -3,6 +3,15 @@ const Appointment = require('../models/Appointment')
 const Sale = require('../models/Sale')
 const SaleDetails = require('../models/SaleDetails')
 
+exports.getAccountsTeam = function(req, res) {
+  User
+    .query()
+    .where('roleId', '=', '2')
+    .then(function(data) {
+      res.json(data)
+    })
+}
+
 exports.getAccounts = function(req, res) {
   User
   	.query()
@@ -43,6 +52,24 @@ exports.editAccount = function(req, res) {
 
 exports.deleteAccount = function(req, res) {
   const accountId = parseInt(req.params.id)
+  Sale
+    .query()
+    .delete()
+    .where('customerId', '=', accountId) 
+    .then(function(salesCDeleted) {
+      res.json({
+        deleted: salesCDeleted
+      })
+    })
+  Sale
+    .query()
+    .delete()
+    .where('teamMemberId', '=', accountId) 
+    .then(function(salesTDeleted) {
+      res.json({
+        deleted: salesTDeleted
+      })
+    })
   User
     .query()
     .deleteById(accountId)
