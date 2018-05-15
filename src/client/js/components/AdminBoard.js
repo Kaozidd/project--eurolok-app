@@ -26,9 +26,10 @@ class AdminBoard extends Component {
   	  	console.log(e)
   	  })
   };
-  handleOpen = () => {
+  handleOpen = (e) => {
   	this.setState({
-  	  dialOpen: true
+  	  dialOpen: true,
+  	  itemId: e.target.key
   	})
   };
   handleClose = () => {
@@ -66,20 +67,20 @@ class AdminBoard extends Component {
 		  	  	  <p className='agenda--appointment--info--rate'>Rate: <span>{appo.customerRate}</span></p>
   	  	  	  	</div>
   	  	  	  	<div>
-		  	  	  <Dialog
-		  	  	    title={`Edit Agenda Item Id: ${appo.id}`}
-		  	  	    actions={actions}
-		  	  	    modal={false}
-		  	  	    open={this.state.dialOpen}
-		  	  	    onRequestClose={this.handleClose}
-		  	  	  >
-		  	  	    Edit the selected item in Agenda.
-		  	  	  </Dialog>
 		  	  	</div>
   	  	  	  </li>
   	  	  	)
   	  	  })}
   	  	</ul>
+	  	<Dialog
+	  	    title='Edit Agenda Item'
+	  	    actions={actions}
+	  	    modal={false}
+	  	    open={this.state.dialOpen}
+	  	    onRequestClose={this.handleClose}
+	  	  >
+	  	    Edit the selected item in Agenda.
+	  	  </Dialog>
   	  </div>
 
   	)

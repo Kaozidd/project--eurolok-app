@@ -27394,9 +27394,10 @@ var AdminBoard = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (AdminBoard.__proto__ || Object.getPrototypeOf(AdminBoard)).call(this));
 
-    _this.handleOpen = function () {
+    _this.handleOpen = function (e) {
       _this.setState({
-        dialOpen: true
+        dialOpen: true,
+        itemId: e.target.key
       });
     };
 
@@ -27480,23 +27481,20 @@ var AdminBoard = function (_Component) {
                   )
                 )
               ),
-              _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                  _Dialog2.default,
-                  {
-                    title: 'Edit Agenda Item Id: ' + appo.id,
-                    actions: actions,
-                    modal: false,
-                    open: _this3.state.dialOpen,
-                    onRequestClose: _this3.handleClose
-                  },
-                  'Edit the selected item in Agenda.'
-                )
-              )
+              _react2.default.createElement('div', null)
             );
           })
+        ),
+        _react2.default.createElement(
+          _Dialog2.default,
+          {
+            title: 'Edit Agenda Item',
+            actions: actions,
+            modal: false,
+            open: this.state.dialOpen,
+            onRequestClose: this.handleClose
+          },
+          'Edit the selected item in Agenda.'
         )
       );
     }
